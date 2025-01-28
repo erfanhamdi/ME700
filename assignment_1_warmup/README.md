@@ -34,3 +34,15 @@ max_iter = 100
 TOL = 1e-6
 root, func_val_at_root, root_history = bisect(f, interval, max_iter, TOL)
 ```
+## Examples
+1. One DOF problem:
+    * find w for which (K = 1, l = 1, F = 0.25):
+$$ 2K [\sqrt{l^2 + w^2} - l]\frac{w}{\sqrt{l^2 + w^2}} - F = 0 $$
+
+```python
+interval = [0, 2]
+Tol = 1e-6
+max_iter = 100
+f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
+root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
+```

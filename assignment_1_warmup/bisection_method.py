@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plotter_function(f, c_history, a_ = -5, b_ = 5):
+def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
+    a_, b_ = plotting_interval
     x = np.linspace(a_, b_, 300)
     plt.figure()
     plt.xlim((a_, b_))
@@ -15,6 +16,9 @@ def plotter_function(f, c_history, a_ = -5, b_ = 5):
         plt.scatter(c_, f(c_), color = 'b', s = 42, alpha = (idx + 1) * alpha_step)
     plt.scatter(c_history[-1], f_c, color = 'r', s = 42)
     plt.show()
+    if title is not None:
+        plt.tight_layout()
+        plt.savefig(f"assignment_1_warmup/figs/{title}.png", dpi = 150, transparent=True)
 
 def not_the_same_sign(f_a, f_b):
     return f_a * f_b < 0
@@ -57,9 +61,13 @@ if __name__=="__main__":
     b = 2
     max_iter = 100
     # f: function to find the root
-    f = lambda x: x**2 - 4
+    # f = lambda x: x**2 - 4
+    K = 1
+    l = 1
+    F = 0.25
+    f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
     # f = lambda x: np.sin(5 * x) + x**3 - x
     c, f_c, c_history = bisect(f, [a, b], max_iter)
     print(f"root = {c}")
     # Plotting the results and steps to the root
-    plotter_function(f, c_history)
+    plotter_function(f, c_history,  "1_dof_problem", [-2, 3])
