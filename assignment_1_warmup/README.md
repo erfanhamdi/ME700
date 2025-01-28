@@ -46,3 +46,4 @@ max_iter = 100
 f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
+![Alt text](figs/1_dof_problem.png)
