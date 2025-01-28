@@ -15,10 +15,10 @@ def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
     for idx, c_ in enumerate(c_history):
         plt.scatter(c_, f(c_), color = 'b', s = 42, alpha = (idx + 1) * alpha_step)
     plt.scatter(c_history[-1], f_c, color = 'r', s = 42)
-    plt.show()
     if title is not None:
         plt.tight_layout()
         plt.savefig(f"assignment_1_warmup/figs/{title}.png", dpi = 150, transparent=True)
+    plt.show()
 
 def not_the_same_sign(f_a, f_b):
     return f_a * f_b < 0
