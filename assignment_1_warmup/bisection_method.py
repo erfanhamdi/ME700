@@ -4,9 +4,11 @@ import matplotlib.pyplot as plt
 def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
     a_, b_ = plotting_interval
     x = np.linspace(a_, b_, 300)
-    plt.figure()
-    plt.xlim((a_, b_))
-    plt.ylim((a_, b_))
+    plt.figure(figsize=(8, 6))
+    # plt.xlim((a_, b_))
+    # plt.ylim((-2, 80))
+    plt.xlabel(r'$x$')
+    plt.ylabel(r'$f(x)$')
     plt.axhline(y = 0, color = 'lightgray', zorder = 1)
     plt.axvline(x = 0, color = 'lightgray', zorder = 1)
     plt.plot(x, f(x), zorder = 1)
@@ -36,7 +38,7 @@ def bisect(f, interval, max_iter, TOL=1e-6):
     a = interval[0] - epsilon
     b = interval[1] + epsilon
     for i in range(max_iter):
-        c = 1.0
+        c = 0.1
         if not_the_same_sign(f(a), f(b)):
             c = take_average(a, b)
             c_history.append(c)
@@ -61,13 +63,21 @@ if __name__=="__main__":
     b = 2
     max_iter = 100
     # f: function to find the root
-    # f = lambda x: x**2 - 4
+    f = lambda x: (x-0.5)**3 
     K = 1
     l = 1
-    F = 0.25
-    f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
+    F = 1.5
+    a_ = 1
+    b_ = 10
+    # f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
+    # f = lambda phi: (phi*np.pi/180)/np.sin(phi*np.pi/180) - F*l/K
     # f = lambda x: np.sin(5 * x) + x**3 - x
-    c, f_c, c_history = bisect(f, [a, b], max_iter)
+    f = lambda x: (a_ - x)**2 + b_*(1-x**2)**2 - 15
+    x = np.linspace(-1, 2, 300)
+    plt.plot(x, f(x))
+    plt.grid()
+    plt.show()
+    c, f_c, c_history = bisect(f, [a, b], max_iter, TOL = 1e-3)
     print(f"root = {c}")
     # Plotting the results and steps to the root
-    plotter_function(f, c_history,  "1_dof_problem", [-2, 3])
+    plotter_function(f, c_history,  "eq3", [-1, 2])
