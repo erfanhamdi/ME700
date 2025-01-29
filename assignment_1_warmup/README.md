@@ -37,6 +37,7 @@ root, func_val_at_root, root_history = bisect(f, interval, max_iter, TOL)
 ## Examples
 1. One DOF problem:
     * find w for which (K = 1, l = 1, F = 0.25):
+    
 $$2K [\sqrt{l^2 + w^2} - l]\frac{w}{\sqrt{l^2 + w^2}} - F = 0$$
 
 ```python
@@ -103,7 +104,9 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 </div>
 
 * Here I have changed the Rosenbrock function so that it can be used with the bisection method$\elipses$
+
     $$(a_ - x)^2 + b(1 - x^2)^2 - 15 = 0$$
+
 ```python
 interval = [0, 2]
 max_iter = 100
