@@ -35,8 +35,12 @@ TOL = 1e-6
 root, func_val_at_root, root_history = bisect(f, interval, max_iter, TOL)
 ```
 ## Examples
-1. One DOF problem:
+1. Large deformation of an elastic system (Nonlinear finite element methods, Wriggers, 2008):
     * find w for which (K = 1, l = 1, F = 0.25):
+
+<div align="center">
+<img src="figs/large_def_elastic.png" width="200" height="150">
+</div>
 
 $$2K [\sqrt{l^2 + w^2} - l]\frac{w}{\sqrt{l^2 + w^2}} - F = 0$$
 
@@ -50,7 +54,7 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 <div align="center">
 <img src="figs/1_dof_problem.png" width="200" height="150">
 </div>
-2. Biforcation Problem (Nonlinear finite element methods, Wriggers, 2008):
+2. Bifurcation Problem (Nonlinear finite element methods, Wriggers, 2008):
 
 * Given the spiral spring constant `c = 1`, the length of the bar `l = 1` and the force `F = 1.5`, find the value of `phi` for which the system is in equilibrium.
 <div align="center">
