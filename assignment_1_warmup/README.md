@@ -73,7 +73,9 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 
 3. Solving other equations:
 To solve other equations, you can define the function and the interval and use the `bisect()` function to find the root.
-    1.  $$y = (x-0.5)^3$$
+
+$$y = (x-0.5)^3$$
+
 ```python
 interval = [0, 2]
 max_iter = 100
@@ -84,7 +86,11 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 <div align="center">
 <img src="figs/eq1.png" width="200" height="150">
 </div>
-    2. $$y = sin(5x) + x^3 - x$$
+
+  
+
+$$y = sin(5x) + x^3 - x$$
+
 ```python
 interval = [-2, 2]
 max_iter = 100
@@ -95,7 +101,8 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 <div align="center">
 <img src="figs/eq2.png" width="200" height="150">
 </div>
-    3.  Here I have changed the Rosenbrock function so that it can be used with the bisection method$\elipses$
+
+* Here I have changed the Rosenbrock function so that it can be used with the bisection method$\elipses$
     $$(a_ - x)^2 + b(1 - x^2)^2 - 15 = 0$$
 ```python
 interval = [0, 2]
