@@ -34,6 +34,10 @@ max_iter = 100
 TOL = 1e-6
 root, func_val_at_root, root_history = bisect(f, interval, max_iter, TOL)
 ```
+5. To run tests you can use `pytest` in the root directory by running:
+    ```
+    pytest
+    ```
 ## Examples
 1. Large deformation of an elastic system (Nonlinear finite element methods, Wriggers, 2008):
     * find w for which (K = 1, l = 1, F = 0.25):
