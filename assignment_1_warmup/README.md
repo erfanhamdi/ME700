@@ -114,7 +114,7 @@ root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 <img src="figs/eq2.png" width="200" height="150">
 </div>
 
-* Here I have changed the Rosenbrock function so that it can be used with the bisection method$\ldots$
+* Here I have changed the Rosenbrock function so that it can be used with the bisection method $\ldots$
 
 $$(a - x)^2 + b(1 - x^2)^2 - 15 = 0$$
 
