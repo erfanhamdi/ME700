@@ -5,8 +5,6 @@ def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
     a_, b_ = plotting_interval
     x = np.linspace(a_, b_, 300)
     plt.figure(figsize=(8, 6))
-    # plt.xlim((a_, b_))
-    # plt.ylim((-2, 80))
     plt.xlabel(r'$x$')
     plt.ylabel(r'$f(x)$')
     plt.axhline(y = 0, color = 'lightgray', zorder = 1)
@@ -16,10 +14,10 @@ def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
     alpha_step = 1 / len(c_history)
     for idx, c_ in enumerate(c_history):
         plt.scatter(c_, f(c_), color = 'b', s = 42, alpha = (idx + 1) * alpha_step)
-    plt.scatter(c_history[-1], f_c, color = 'r', s = 42)
+    plt.scatter(c_history[-1], f(c_), color = 'r', s = 42)
     if title is not None:
         plt.tight_layout()
-        plt.savefig(f"assignment_1_warmup/figs/{title}.png", dpi = 150, transparent=True)
+        plt.savefig(f"./figs/{title}.png", dpi = 150, transparent=True)
     plt.show()
 
 def not_the_same_sign(f_a, f_b):
@@ -63,12 +61,12 @@ if __name__=="__main__":
     b = 2
     max_iter = 100
     # f: function to find the root
-    f = lambda x: (x-0.5)**3 
     K = 1
     l = 1
     F = 1.5
     a_ = 1
     b_ = 10
+    f = lambda x: (x-0.5)**3 
     # f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
     # f = lambda phi: (phi*np.pi/180)/np.sin(phi*np.pi/180) - F*l/K
     # f = lambda x: np.sin(5 * x) + x**3 - x
@@ -80,4 +78,4 @@ if __name__=="__main__":
     c, f_c, c_history = bisect(f, [a, b], max_iter, TOL = 1e-3)
     print(f"root = {c}")
     # Plotting the results and steps to the root
-    plotter_function(f, c_history,  "eq3", [-1, 2])
+    # plotter_function(f, c_history,  "eq3", [-1, 2])
