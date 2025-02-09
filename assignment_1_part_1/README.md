@@ -45,7 +45,7 @@ def J(x):
 from newton_raphson_script import newton_raphson
 initial_guess = np.array([2])
 max_iter = 100
-TOL = 1e-6
+tol = 1e-6
 store_history = True # if you want to store the history of the iterations
 result1 = newton_raphson(f1, J1, init_guess=-2.0, max_iter=100, tol=1e-6, store_history=True)
 ```
@@ -75,6 +75,10 @@ result1 = newton_raphson(f1, J1, init_guess=-2.0)
 2. Rosenbrock function:
 <div align="center">
 <img src="figs/rosenbrock.png" width="200" height="150">
+</div>
+Convergence of the Newton-Raphson method for the Rosenbrock function starting at initial guess (-1, 1). (wait for it!)
+
+<div align="center">
 <img src="figs/convergence.gif" width="200" height="150">
 </div>
 
@@ -90,8 +94,7 @@ J = lambda x: np.array([2*x[0] - 2*a - 4*b*x[0]*(x[1] - x[0]**2), 2*b*(x[1] - x[
 result2 = newton_raphson(f, J, init_guess=np.array([-1, 1]), max_iter=1000)
 ```
 
-3. Solving other equations:
-To solve other equations, you can define the function and the interval and use the `bisect()` function to find the root.
+3. A very non-linear function:
 
 $$xe^x - 2 = 0$$
 

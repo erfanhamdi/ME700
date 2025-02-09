@@ -15,24 +15,21 @@ class NewtonResult:
     converged: bool
     iterations_count: int
 
-def f(x):
-    return np.array([(1 - x[0])**2 + 100*(x[1] - x[0]**2)**2])
-def J(x):
-    return np.array([2*x[0] - 2 - 400*x[0]*(x[1] - x[0]**2), 200*(x[1] - x[0]**2)])
-
 def is_square(J):
+    """Check if a matrix is square"""
     try:
         return J.shape[0] == J.shape[1]
     except:
         return False
 
 def J_inv(J):
+    """Calculate the inverse of the Jacobian"""
     if is_square(J) == False:
         # Psuedo inverse always exists so no need for a try/except block!
         try:
             return np.linalg.pinv(J).T
         except np.linalg.LinAlgError:
-            return 1/J
+            return np.array([1/J])
     else:
         try:
             return np.linalg.inv(J)
@@ -54,12 +51,11 @@ def newton_raphson(
     Args:
         f: Function to find root for
         J: Jacobian of the function
-        x0: Initial guess
+        init_guess: Initial guess
         tol: Tolerance for convergence
         max_iter: Maximum number of iterations
         store_history: Whether to store iteration history
     """
-    # get the x symbol from the function
     X = np.array([init_guess]).T
     iterations = [X] if store_history else []
     errors = []
@@ -82,32 +78,15 @@ def newton_raphson(
 
     return NewtonResult(X, iterations, errors, False, max_iter)
 
-def plot_convergence(result: NewtonResult, save_path: str = None):
-    """
-    Plot convergence history
-    
-    Args:
-        result: NewtonResult object containing iteration history
-        save_path: Path to save the plot (optional)
-    """
-    plt.figure(figsize=(10, 5))
-    plt.semilogy(range(len(result.errors)), result.errors, 'r.-')
-    plt.xlabel('Iteration')
-    plt.ylabel('Error (log scale)')
-    plt.title('Error vs Iteration')
-    plt.grid(True)
-    
-    plt.tight_layout()
-    
-    if save_path:
-        plt.savefig(save_path)
-    plt.show()
-
 if __name__ == "__main__":
 
-    x = sp.symbols('x')
-    f1 = x**3 - 2*x - 5
-    J1 = sp.diff(f1, x)
+    # x = sp.symbols('x')
+    # f1 = x**3 - 2*x - 5
+    # J1 = sp.diff(f1, x)
+    # f1 = sp.lambdify(x, f1)
+    # J1 = sp.lambdify(x, J1)
+    f1 = lambda x: 2*x - 3
+    J1 = lambda x: 2
     init_guess = 2
 
     result = newton_raphson(f1, J1, init_guess=init_guess, max_iter = 1000)
