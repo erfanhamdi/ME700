@@ -26,7 +26,7 @@ def J_inv(J):
         try:
             return np.linalg.pinv(J).T
         except np.linalg.LinAlgError:
-            return np.array([1/J])
+            return np.array([1/(J+1e-8)])
     else:
         try:
             return np.linalg.inv(J)
