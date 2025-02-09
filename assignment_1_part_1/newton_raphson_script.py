@@ -1,9 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import sympy as sp
-import scipy as sc
-import pyvista as pv
-from typing import Callable, Tuple, List
+from typing import Callable, List
 from dataclasses import dataclass
 
 @dataclass
@@ -56,14 +53,15 @@ def newton_raphson(
         max_iter: Maximum number of iterations
         store_history: Whether to store iteration history
     """
-    X = np.array([init_guess]).T
+    flag_sym = False
+    X = np.array(init_guess)
     iterations = [X] if store_history else []
     errors = []
+    if f(X).shape == ():
+        X = np.array([init_guess])
     if is_square(J(X)) == False:
         print("Jacobian is not square. using the psudo inverse")
-
     for i in range(max_iter):
-        
         X_new = X - J_inv(J(X)) @ f(X)
         error_rel = np.linalg.norm(abs(f(X_new)))
         
@@ -80,18 +78,23 @@ def newton_raphson(
 
 if __name__ == "__main__":
 
-    # x = sp.symbols('x')
-    # f1 = x**3 - 2*x - 5
-    # J1 = sp.diff(f1, x)
-    # f1 = sp.lambdify(x, f1)
-    # J1 = sp.lambdify(x, J1)
-    f1 = lambda x: 2*x - 3
-    J1 = lambda x: 2
+    x = sp.symbols('x')
+    f1 = x**3 - 2*x - 5
+    J1 = sp.diff(f1, x)
+    f1 = sp.lambdify(x, f1)
+    J1 = sp.lambdify(x, J1)
     init_guess = 2
 
-    result = newton_raphson(f1, J1, init_guess=init_guess, max_iter = 1000)
+    # result = newton_raphson(f1, J1, init_guess=init_guess, max_iter = 1000)
     
     # Print results
-    print(f"Root found: {result.root}")
-    print(f"Converged: {result.converged}")
-    print(f"Number of iterations: {result.iterations_count}")
+    # print(f"Root found: {result.root}")
+    # print(f"Converged: {result.converged}")
+    # print(f"Number of iterations: {result.iterations_count}")
+
+    from sympy import symbols, sqrt, Eq
+
+# Define variables
+    
+    # Display the equation
+    # print(equation)
