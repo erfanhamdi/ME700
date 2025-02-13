@@ -40,9 +40,3 @@ def test_bisect_tolerance():
 def test_bisect_max_iterations():
     with pytest.raises(ValueError, match = "Max iter reached, No roots found"):
         root, value, _ = bisect(f, (-2, 2), 1)
-
-def test_plotter_function():
-    root, value, c_history = bisect(f, (-2, 2), 100, TOL=1e-8)
-    plotter_function(f, c_history, "eqtest", [-2, 2])
-    # Check if the file is created
-    assert os.path.exists("/Users/erfan/Documents/Courses/ME700-push/figs/eqtest.png") == True

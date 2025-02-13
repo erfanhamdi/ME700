@@ -1,25 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
-    a_, b_ = plotting_interval
-    x = np.linspace(a_, b_, 300)
-    plt.figure(figsize=(8, 6))
-    plt.xlabel(r'$x$')
-    plt.ylabel(r'$f(x)$')
-    plt.axhline(y = 0, color = 'lightgray', zorder = 1)
-    plt.axvline(x = 0, color = 'lightgray', zorder = 1)
-    plt.plot(x, f(x), zorder = 1)
-    # plotting the steps to the root and changing the transparency at each step
-    alpha_step = 1 / len(c_history)
-    for idx, c_ in enumerate(c_history):
-        plt.scatter(c_, f(c_), color = 'b', s = 42, alpha = (idx + 1) * alpha_step)
-    plt.scatter(c_history[-1], f(c_), color = 'r', s = 42)
-    if title is not None:
-        plt.tight_layout()
-        plt.savefig(f"figs/{title}.png", dpi = 150, transparent=True)
-
-
 def not_the_same_sign(f_a, f_b):
     return f_a * f_b < 0
 
