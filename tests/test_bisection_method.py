@@ -1,6 +1,6 @@
 import os
 import pytest
-from src.bisection_method import not_the_same_sign, take_average, is_root, bisect, plotter_function
+from src.bisection_method import not_the_same_sign, take_average, is_root, bisect
 
 def test_positive_and_negative():
     assert not_the_same_sign(3, -2) == True
