@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/sandialabs/sibl#license)
 
 [![codecov](https://codecov.io/gh/erfanhamdi/ME700/graph/badge.svg?token=2IUOIQ8IEM)](https://codecov.io/gh/erfanhamdi/ME700)
-[![tests](https://github.com/erfanhamdi/ME700/actions/workflows/tests.yml/badge.svg)](https://github.com/erfanhamdi/ME700/actions)
+[![tests](https://github.com/erfanhamdi/ME700/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/erfanhamdi/ME700/actions)
 
 * This repository contains the course materials for ME700 (Mechanical Engineering) at Boston University.
 
