@@ -1,4 +1,5 @@
 # ME700-2025-MECHE-BU
+[![codecov](https://codecov.io/gh/erfanhamdi/ME700/graph/badge.svg?token=2IUOIQ8IEM)](https://codecov.io/gh/erfanhamdi/ME700)
 
 * This repository contains the course materials for ME700 (Mechanical Engineering) at Boston University.
 
