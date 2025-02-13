@@ -43,7 +43,7 @@ root, func_val_at_root, root_history = bisect(f, interval, max_iter, TOL)
     * find w for which (K = 1, l = 1, F = 0.25):
 
 <div align="center">
-<img src="figs/large_def_elastic.png" width="200" height="150">
+<img src="../figs/large_def_elastic.png" width="200" height="150">
 </div>
 
 $$2K [\sqrt{l^2 + w^2} - l]\frac{w}{\sqrt{l^2 + w^2}} - F = 0$$
@@ -56,13 +56,13 @@ f = lambda w: 2*K*(np.sqrt(l**2 + w**2) - l) * (w)/(np.sqrt(l**2 + w**2)) - F
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
 <div align="center">
-<img src="figs/1_dof_problem.png" width="200" height="150">
+<img src="../figs/1_dof_problem.png" width="200" height="150">
 </div>
 2. Bifurcation Problem (Nonlinear finite element methods, Wriggers, 2008):
 
 * Given the spiral spring constant `c = 1`, the length of the bar `l = 1` and the force `F = 1.5`, find the value of `phi` for which the system is in equilibrium.
 <div align="center">
-<img src="figs/bifurcation.png" width="300" height="150">
+<img src="../figs/bifurcation.png" width="300" height="150">
 </div>
 
 * In this problem we can see how bisection method can be used to find only one root of an unstable system given the correct initial guess.
@@ -80,7 +80,7 @@ f = lambda phi: (phi*np.pi/180)/np.sin(phi*np.pi/180) - F*l/K
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
 <div align="center">
-<img src="figs/bifurcation problem.png" width="200" height="150">
+<img src="../figs/bifurcation problem.png" width="200" height="150">
 </div>
 
 3. Solving other equations:
@@ -96,7 +96,7 @@ f = lambda x: (x-0.5)**3
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
 <div align="center">
-<img src="figs/eq1.png" width="200" height="150">
+<img src="../figs/eq1.png" width="200" height="150">
 </div>
 
   
@@ -111,7 +111,7 @@ f = lambda x: np.sin(5*x) + x**3 - x
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
 <div align="center">
-<img src="figs/eq2.png" width="200" height="150">
+<img src="../figs/eq2.png" width="200" height="150">
 </div>
 
 * Here I have changed the Rosenbrock function so that it can be used with the bisection method $\ldots$
@@ -128,7 +128,7 @@ f = lambda x: (a - x)**2 + b*(1 - x**2)**2 - 15
 root, f_at_root, root_hist = bisect(f, interval, max_iter, Tol)
 ```
 <div align="center">
-<img src="figs/eq3.png" width="200" height="150">
+<img src="../figs/eq3.png" width="200" height="150">
 </div>
 
 ## References
