@@ -1,113 +1,44 @@
-# Bisection Method
-[![codecov](https://codecov.io/gh/erfanhamdi/newton-raphson/graph/badge.svg?token=BTF8TXIECJ)](https://codecov.io/gh/erfanhamdi/newton-raphson)
+# Elasto Plastic Material Model
 ## Overview
-Newton-Raphson root finding method is implemented in this script.
+The corrector predictor algorithm is used to model elasto plastic materials.
 
 ## Dependencies
 - Python 3.8 or higher
 - `numpy 2.2.* `
-- `sympy 1.8.*`
 - `matplotlib 3.10.*`
-
+- `pytest 6.2.*`
 ## Setup and Usage
 1. Clone or download the code.
 2. Install dependencies:
     ```
     pip install -r requirements.txt
     ```
-3. you can define your function and Jacobian using a sympy function, a lambda function or regular python function.
-* Example: To find roots of:
-$$y = x^2 - 4$$ 
-* Using sympy functions:
-```python
-from sympy import symbols
-x = symbols('x')
-f = x**2 - 4
-J = f.diff(x)
-# you have to lambdify them!
-f = lambdify(x, f)
-J = lambdify(x, J)
-```
-* Using lambda functions:
-```python
-f = lambda x: x**2 - 4
-J = lambda x: 2*x
-```
-* Using python functions:
-```python
-def f(x):
-    return x**2 - 4
-def J(x):
-    return 2*x
-```
-4. Define the initial guess (`np.array`), maximum number of iterations (`int`), and the stopping tolerance (`float`) and Give the function as well as all theser parameters as the input to the `newton_raphson()` function in  `newton_raphson.py`:
-```python
-from newton_raphson_script import newton_raphson
-initial_guess = np.array([2])
-max_iter = 100
-tol = 1e-6
-store_history = True # if you want to store the history of the iterations
-result1 = newton_raphson(f1, J1, init_guess=-2.0, max_iter=100, tol=1e-6, store_history=True)
-```
-5. To run tests you can use `pytest` in the root directory by running:
-    ```
-    pytest
-    ```
-## Examples
-1. Polynomial function:
-    
-$$x^3 - 2x -5 = 0$$
+3. You can use an Isotropic hardening `Isotropic_EP` or kinematic hardening `Kinematic_EP` material model. They both inherit from the `ElastoPlastic` class.
 
+4. Give at least 2 of these material properties (Young's Modulus `E`, Tangent Modulus `E_t`, Hardening Modulus `H`)
+and the yield stress `Y_0` to the `Material` class.
+```python
+mat = Isotropic_EP(E=1, E_t=1, H=1, Y_0=1)
+```
+5. Now define the loading profile using the `InputStrain` class. by defining the strain and loading steps to reach that strain.
+for example to get a strain profile of 
 <div align="center">
-<img src="figs/e1.png" width="200" height="150">
+<img src="../figs/strain_profile.png" width="200" height="150">
 </div>
 
-
 ```python
-x = sp.symbols('x')
-f1 = x**3 - 2*x - 3
-J1 = sp.diff(f1, x)
-f1 = sp.lambdify(x, f1)
-J1 = sp.lambdify(x, J1)
-result1 = newton_raphson(f1, J1, init_guess=-2.0)
-```
----
-2. Rosenbrock function:
-<div align="center">
-<img src="figs/rosenbrock.png" width="200" height="150">
-</div>
-Convergence of the Newton-Raphson method for the Rosenbrock function starting at initial guess (-1, 1). (wait for it!)
-
-<div align="center">
-<img src="figs/convergence.gif" width="200" height="150">
-</div>
-
-* This is a function that is normally used to test optimization algorithms. It has a root at $(a, a^2)$ It is defined as:
-
-$$(a - x)^2 + b(y - x^2)^2 = 0$$
-
-```python
-a = 1
-b = 100
-f = lambda x: np.array([(a - x[0])**2 + b*(x[1] - x[0]**2)**2])
-J = lambda x: np.array([2*x[0] - 2*a - 4*b*x[0]*(x[1] - x[0]**2), 2*b*(x[1] - x[0]**2)])
-result2 = newton_raphson(f, J, init_guess=np.array([-1, 1]), max_iter=1000)
+eps = [0, 0.05, -0.05, 0.07, 0.0]
+load_step_list = [1000, 2000, 2500, 1500 ]
+input_strain = InputStrain(eps, load_step_list)
+eps_array = input_strain.strain_profile()
 ```
 
-3. A very non-linear function:
-
-$$xe^x - 2 = 0$$
-
+6. Now you can use the `main_loop` function to get the stress-strain curve.
 ```python
-x = sp.symbols('x')
-f3 = x*sp.exp(x) - 2
-J3 = sp.diff(f3, x)
-f3 = sp.lambdify(x, f3)
-J3 = sp.lambdify(x, J3)
-result3 = newton_raphson(f3, J3, init_guess=1.0)
+sigma_list, eps_list = main_loop(mat, eps_array)
 ```
 <div align="center">
-<img src="figs/e3.png" width="200" height="150">
+<img src="../figs/both_stress_strain.png" width="200" height="150">
 </div>
 
 ## References

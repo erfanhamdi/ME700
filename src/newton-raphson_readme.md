@@ -1,5 +1,4 @@
 # Newton-Raphson Method
-[![codecov](https://codecov.io/gh/erfanhamdi/newton-raphson/graph/badge.svg?token=BTF8TXIECJ)](https://codecov.io/gh/erfanhamdi/newton-raphson)
 ## Overview
 Newton-Raphson root finding method is implemented in this script.
 
@@ -59,7 +58,7 @@ result1 = newton_raphson(f1, J1, init_guess=-2.0, max_iter=100, tol=1e-6, store_
 $$x^3 - 2x -5 = 0$$
 
 <div align="center">
-<img src="figs/e1.png" width="200" height="150">
+<img src="../figs/e1.png" width="200" height="150">
 </div>
 
 
@@ -74,12 +73,12 @@ result1 = newton_raphson(f1, J1, init_guess=-2.0)
 ---
 2. Rosenbrock function:
 <div align="center">
-<img src="figs/rosenbrock.png" width="200" height="150">
+<img src="../figs/rosenbrock.png" width="200" height="150">
 </div>
 Convergence of the Newton-Raphson method for the Rosenbrock function starting at initial guess (-1, 1). (wait for it!)
 
 <div align="center">
-<img src="figs/convergence.gif" width="200" height="150">
+<img src="../figs/convergence.gif" width="200" height="150">
 </div>
 
 * This is a function that is normally used to test optimization algorithms. It has a root at $(a, a^2)$ It is defined as:
@@ -107,7 +106,7 @@ J3 = sp.lambdify(x, J3)
 result3 = newton_raphson(f3, J3, init_guess=1.0)
 ```
 <div align="center">
-<img src="figs/e3.png" width="200" height="150">
+<img src="../figs/e3.png" width="200" height="150">
 </div>
 
 ## References
