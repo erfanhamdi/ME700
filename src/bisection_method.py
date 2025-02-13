@@ -17,7 +17,7 @@ def plotter_function(f, c_history, title = None, plotting_interval = [-5, 5]):
     plt.scatter(c_history[-1], f(c_), color = 'r', s = 42)
     if title is not None:
         plt.tight_layout()
-        plt.savefig(f"erfanhamdi/ME700/figs/{title}.png", dpi = 150, transparent=True)
+        plt.savefig(f"figs/{title}.png", dpi = 150, transparent=True)
 
 
 def not_the_same_sign(f_a, f_b):
