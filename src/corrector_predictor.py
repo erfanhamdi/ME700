@@ -5,7 +5,7 @@ class InputStrain:
     """
     This class is used to generate strain profile for the material model.
     """
-    def __init__(self, eps, load_step_list):
+    def __init__(self, eps: list, load_step_list: list) -> None:
         """
         input:
             eps: list of strain values
@@ -79,29 +79,42 @@ class ElastoPlastic:
             raise ValueError("Yield stress must be provided.")
         self.phi = 0
     
-    def y_new(self, eps_p):
+    def y_new(self, eps_p: float):
+        """
+        This function updates the yield stress.
+        """
         self.Y = self.Y_0 + self.H * eps_p
     
-    def sigma_trial(self, sigma_old, d_eps):
+    def sigma_trial(self, sigma_old: float, d_eps: float):
         return sigma_old + self.E * d_eps
 
-    def check_state(self, sigma_trial):
+    def check_state(self, sigma_trial: float):
         """
         This function checks if the material is in elastic or plastic state.
         """
         self.phi = np.abs(sigma_trial) - self.Y
         return self.phi, self.phi <= 0
 
-    def d_eps_p(self, phi_trial):
+    def d_eps_p(self, phi_trial: float):
         return phi_trial / (self.E + self.H)
 
 class Kinematic_EP(ElastoPlastic):
     """
     This class is used to implement the kinematic hardening model.
     """
-    def update_state(self, d_eps, sigma, eps_p, alpha):
+    def update_state(self, d_eps: float, sigma: float, eps_p: float, alpha: float):
         """
         This function updates the state of the material model.
+
+        input:
+            d_eps: float, strain increment
+            sigma: float, stress at the start of the step
+            eps_p: float, plastic strain at the start of the step
+            alpha: float, alpha at the start of the step
+        output:
+            sigma_n: float, stress at the end of the step
+            eps_p_n: float, plastic strain at the end of the step
+            alpha_n: float, alpha at the end of the step
         """
         sigma_trial = self.sigma_trial(sigma, d_eps)
         alpha_trial = alpha
@@ -122,7 +135,11 @@ class Isotropic_EP(ElastoPlastic):
     """
     This class is used to implement the isotropic hardening model.
     """
-    def update_state(self, d_eps, sigma, eps_p, alpha = 0):
+    def update_state(self, d_eps: float, sigma: float, eps_p: float, alpha = 0):
+        """
+        This function updates the state of the material model.
+        alpha is set to zero in this material model.
+        """
         sigma_trial = self.sigma_trial(sigma, d_eps)
         phi_trial, state = self.check_state(sigma_trial)
         if state:
@@ -135,7 +152,7 @@ class Isotropic_EP(ElastoPlastic):
         self.y_new(eps_p_n)
         return sigma_n, eps_p_n, 0
             
-def main_loop(mat, eps_profile):
+def main_loop(mat, eps_profile: np.array):
     """
     This function is used to run the main loop of the material model.
 
