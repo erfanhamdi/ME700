@@ -13,3 +13,23 @@
 2. [Newton-Raphson Method](src/newton-raphson_readme.md)
 3. [Elasto Plastic material](src/elasto_plastic_readme.md)
 
+* You can find the tutorials for each assignment in the `tutorials/` directory.
+
+## Setup instructions
+1. Create a conda environment and activate it
+```
+conda create --name me700-env python=3.9.13
+conda activate me700-env
+```
+2. Install the base requirements
+```
+pip install --upgrade pip setuptools wheel
+```
+3. Install the requirements by running this command in the root directory.
+```
+pip install -e .
+```
+4. You can run the tests using the `pytest` module
+```
+pytest -v --cov=setupexample  --cov-report term-missing
+```
