@@ -11,7 +11,7 @@
 ## Assignment 1
 1. [Bisection Method](src/bisection_readme.md)
 2. [Newton-Raphson Method](src/newton-raphson_readme.md)
-3. [Elasto Plastic material](src/elasto_plastic_readme.md)
+3. [Elasto Plastic material](src/corrector-predictor-readme.md)
 
 * You can find the tutorials for each assignment part in the `tutorials/` directory.
 
