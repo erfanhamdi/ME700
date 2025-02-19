@@ -2,7 +2,17 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class InputStrain:
+    """
+    This class is used to generate strain profile for the material model.
+    """
     def __init__(self, eps, load_step_list):
+        """
+        input:
+            eps: list of strain values
+            load_step_list: list of number of load steps between each strain value
+        output:
+            strain profile: np.array of strain values
+        """
         self.eps = eps
         self.load_step_list = load_step_list
     def strain_profile(self):
@@ -17,15 +27,21 @@ class InputStrain:
         return np.concatenate(eps_list)
 
 class ElastoPlastic:
+    """
+    This is the base class for elasto-plastic material model.
+    """
     def __init__(self, **kwargs):
         required_keys = {"E", "H", "E_t"}
         provided_inputs = required_keys.intersection(kwargs.keys())
         if len(provided_inputs) < 2:
             raise ValueError("At least two of (E, H, E_t) is required.")
-
+        # Young's modulus
         self.E = kwargs.get("E")
+        # Hardening modulus
         self.H = kwargs.get("H")
+        # Tangent modulus
         self.E_t = kwargs.get("E_t")
+        # Yield stress
         self.Y = kwargs.get("Y_0")
         self.Y_0 = kwargs.get("Y_0")
         # check dtype for each input raise error if not float
@@ -70,6 +86,9 @@ class ElastoPlastic:
         return sigma_old + self.E * d_eps
 
     def check_state(self, sigma_trial):
+        """
+        This function checks if the material is in elastic or plastic state.
+        """
         self.phi = np.abs(sigma_trial) - self.Y
         return self.phi, self.phi <= 0
 
@@ -77,8 +96,13 @@ class ElastoPlastic:
         return phi_trial / (self.E + self.H)
 
 class Kinematic_EP(ElastoPlastic):
-    
+    """
+    This class is used to implement the kinematic hardening model.
+    """
     def update_state(self, d_eps, sigma, eps_p, alpha):
+        """
+        This function updates the state of the material model.
+        """
         sigma_trial = self.sigma_trial(sigma, d_eps)
         alpha_trial = alpha
         eta_trial = sigma_trial - alpha_trial
@@ -95,6 +119,9 @@ class Kinematic_EP(ElastoPlastic):
         return sigma_n,  eps_p_n, alpha_n
 
 class Isotropic_EP(ElastoPlastic):
+    """
+    This class is used to implement the isotropic hardening model.
+    """
     def update_state(self, d_eps, sigma, eps_p, alpha = 0):
         sigma_trial = self.sigma_trial(sigma, d_eps)
         phi_trial, state = self.check_state(sigma_trial)
@@ -109,6 +136,16 @@ class Isotropic_EP(ElastoPlastic):
         return sigma_n, eps_p_n, 0
             
 def main_loop(mat, eps_profile):
+    """
+    This function is used to run the main loop of the material model.
+
+    input:
+        mat: material model object
+        eps_profile: np.array of strain values
+    output:
+        sigma_list: list of stress values
+        eps_p_list: list of plastic strain values
+    """
     sigma = 0
     eps_p = 0
     alpha = 0
