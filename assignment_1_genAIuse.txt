@@ -1,0 +1,1 @@
+I have used cursor IDE + claude 3.5 sonnet LLM model to generate the animation funcitons for the newton-raphson tutorial.

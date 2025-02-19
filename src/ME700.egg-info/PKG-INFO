@@ -1,0 +1,32 @@
+Metadata-Version: 2.2
+Name: ME700
+Version: 0.1.0
+Summary: ME700-assignment1
+Author-email: Erfan Hamdi <Erfan@bu.edu>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib==3.10.0
+Requires-Dist: numpy==2.2.2
+Requires-Dist: sympy
+Requires-Dist: scipy
+Requires-Dist: pytest==7.1.2
+Requires-Dist: pytest-cov==3.0.0
+
+# ME700-2025-MECHE-BU
+[![python](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/)
+![os](https://img.shields.io/badge/os-ubuntu%20|%20macos%20|%20windows-blue.svg)
+[![license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/sandialabs/sibl#license)
+
+[![codecov](https://codecov.io/gh/erfanhamdi/ME700/graph/badge.svg?token=2IUOIQ8IEM)](https://codecov.io/gh/erfanhamdi/ME700)
+[![tests](https://github.com/erfanhamdi/ME700/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/erfanhamdi/ME700/actions)
+
+* This repository contains the course materials for ME700 (Mechanical Engineering) at Boston University.
+
+## Assignment 1
+1. [Bisection Method](src/bisection_readme.md)
+2. [Newton-Raphson Method](src/newton-raphson_readme.md)
+3. [Elasto Plastic material](src/elasto_plastic_readme.md)
+

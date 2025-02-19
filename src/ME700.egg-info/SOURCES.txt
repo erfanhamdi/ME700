@@ -1,0 +1,14 @@
+README.md
+pyproject.toml
+src/__init__.py
+src/bisection_method.py
+src/corrector_predictor.py
+src/newton_raphson.py
+src/ME700.egg-info/PKG-INFO
+src/ME700.egg-info/SOURCES.txt
+src/ME700.egg-info/dependency_links.txt
+src/ME700.egg-info/requires.txt
+src/ME700.egg-info/top_level.txt
+tests/test_bisection_method.py
+tests/test_corrector_predictor.py
+tests/test_newton_raphson.py
