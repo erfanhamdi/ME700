@@ -21,7 +21,7 @@
 conda create --name me700-env python=3.9.13
 conda activate me700-env
 ```
-2. Install the base requirements
+2. Clone/Download the code and change directory to it Install the base requirements
 ```
 pip install --upgrade pip setuptools wheel
 ```
