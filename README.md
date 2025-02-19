@@ -6,14 +6,14 @@
 [![codecov](https://codecov.io/gh/erfanhamdi/ME700/graph/badge.svg?token=2IUOIQ8IEM)](https://codecov.io/gh/erfanhamdi/ME700)
 [![tests](https://github.com/erfanhamdi/ME700/actions/workflows/code-coverage.yml/badge.svg)](https://github.com/erfanhamdi/ME700/actions)
 
-* This repository contains the course materials for ME700 (Mechanical Engineering) at Boston University.
+* This repository contains the course materials for ME700 at Boston University.
 
 ## Assignment 1
 1. [Bisection Method](src/bisection_readme.md)
 2. [Newton-Raphson Method](src/newton-raphson_readme.md)
 3. [Elasto Plastic material](src/elasto_plastic_readme.md)
 
-* You can find the tutorials for each assignment in the `tutorials/` directory.
+* You can find the tutorials for each assignment part in the `tutorials/` directory.
 
 ## Setup instructions
 1. Create a conda environment and activate it
